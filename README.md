@@ -44,20 +44,20 @@
 
 ## Orders テーブル
 
-| column        | Type     | Options     |
-| --------------| -------- | ------------|
-| postal_code   | string   | null: false |
-| prefecture_id | string   | null: false |
-| municipality  | string   | null: false |
-| address       | string   | null: false |
-| building_name | string   |             |
-| phone_number  | string   | null: false |
+| column        | Type      | Options                        |
+| --------------| --------- | ------------------------------ |
+| postal_code   | string    | null: false                    |
+| prefecture_id | string    | null: false                    |
+| municipality  | string    | null: false                    |
+| address       | string    | null: false                    |
+| building_name | string    |                                |
+| phone_number  | string    | null: false                    |
+| purchase      | reference | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :purchase
-- belongs_to_active_hash :address
-
+- belongs_to :purchase
+- belongs_to_active_hash :prefecture
 
 ## Purchases テーブル
 
@@ -65,10 +65,9 @@
 | ------ | --------- | ------------------------------ |
 | user   | reference | null: false, foreign_key: true |
 | item   | reference | null: false, foreign_key: true |
-| order  | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :order
+- has_one :order
