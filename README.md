@@ -1,6 +1,6 @@
 # テーブル設計
 
-## Users テーブル
+## users テーブル
 | Column           | Type    | Options                        |
 | ---------------- | ------- | ------------------------------ |
 | nickname         | string  | null: false                    |
@@ -15,58 +15,31 @@
 ### Association
 
 - has_many :items
-- has_one :purchases
-- has_one :order
+- has_many :purchases
 
-## Items テーブル
 
-| Column          | Type      | Options                        |
-| --------------- | --------- | ------------------------------ |
-| name            | string    | null: false                    |
-| text            | text      | null: false                    |
-| price           | integer   | null: false                    |
-| user            | reference | null: false, foreign_key: true |
-| category        | string    | null: false                    |
-| condition       | string    | null: false                    |
-| shipping_format | string    | null: false                    |
-| day             | string    | null: false                    |
-|prefecture       | string    | null: false                    |
+## items テーブル
+| Column  | Type      | Options                        |
+| ------- | --------- | ------------------------------ |
+| image   |           | null: false                    |
+| name    | string    | null: false                    |
+| text    | text      | null: false                    |
+| price   | integer   | null: false                    |
+| user_id | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to_active_hash :category
-- belongs_to_active_hash :condition
-- belongs_to_active_hash :shipping_format
-- belongs_to_active_hash :day
-- belongs_to_active_hash :prefecture
-- has_one :purchase
+-belongs_to :user
+-has_one :purchase
 
-## Orders テーブル
-
-| column  | Type      | Options                        |
-| --------| --------- | ------------------------------ |
-| address | string    | null: false                    |
-| number  | integer   | null: false                    |
-| item    | reference | null: false, foreign_key: true |
-| price   | reference | null: false, foreign_key: true |
-| user    | reference | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item
-- belongs_to :price
-- belongs_to :user
-
-
-## Purchases テーブル
-
+## purchases テーブル
 | Column   | Type      | Options                        |
 | -------- | --------- | ------------------------------ |
-| user     | reference | null: false, foreign_key: true |
-| item     | reference | null: false, foreign_key: true |
+| address  | string    | null: false                    |
+| user_id  | reference | null: false, foreign_key: true |
+| item_id  | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+-belongs_to :user
+-belongs_to :item
